@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 // Main class
 public class LibraryManagementSystem {
     public static void main(String[] args) {
@@ -10,10 +9,23 @@ public class LibraryManagementSystem {
         Scanner scanner = new Scanner(System.in);
 
         // Sample books
-        Book book1 = new Book("The Catcher in the Rye", "J.D. Salinger", "123456789");
-        Book book2 = new Book("To Kill a Mockingbird", "Harper Lee", "987654321");
+        Book book1 = new Book("Madoldoowa", "Martin Wickramasinghe", "4565");
+        Book book2 = new Book("Colpetty People", "Ashok Ferrey", "1238");
+        Book book3 = new Book("The Language of the Geckos", "Ananda Wickramasinghe", "9195");
+        Book book4 = new Book("A Change of Skies", "Yasmine Gooneratne", "8538");
+        Book book5 = new Book("Reef", "Romesh Gunesekera", "2166");
+        Book book6 = new Book("Chinaman", "Shehan Karunatilaka", "7524");
+        Book book7 = new Book("Funny Boy", "Shyam Selvadurai", "6239");
+        Book book8 = new Book("Island of a Thousand Mirrors", "Nayomi Munaweera", "3947");
+
         library.addBook(book1);
         library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
+        library.addBook(book5);
+        library.addBook(book6);
+        library.addBook(book7);
+        library.addBook(book8);
 
         // Sample user
         User user = new User(1);
@@ -22,7 +34,8 @@ public class LibraryManagementSystem {
             System.out.println("\n1. Display Available Books");
             System.out.println("2. Borrow a Book");
             System.out.println("3. Return a Book");
-            System.out.println("4. Exit");
+            System.out.println("4. Add a Book");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -45,6 +58,9 @@ public class LibraryManagementSystem {
                     user.returnBook(returnIsbn);
                     break;
                 case 4:
+                    addBook(library, scanner);
+                    break;
+                case 5:
                     System.out.println("Exiting program. Thank you!");
                     System.exit(0);
                     break;
@@ -53,8 +69,21 @@ public class LibraryManagementSystem {
             }
         }
     }
-}
 
+    private static void addBook(Library library, Scanner scanner) {
+        System.out.print("Enter the title of the book: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter the author of the book: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter the ISBN of the book: ");
+        String isbn = scanner.nextLine();
+
+        Book newBook = new Book(title, author, isbn);
+        library.addBook(newBook);
+
+        System.out.println("Book added successfully!");
+    }
+}
 
 // Book class
 class Book {
@@ -105,16 +134,26 @@ class Library {
     }
 
     public void addBook(Book book) {
+        book.setAvailable(true); // Set new books as available by default
         books.add(book);
     }
 
     public void displayAvailableBooks() {
+        List<Book> availableBooks = getAvailableBooks();
         System.out.println("Available Books:");
+        for (Book book : availableBooks) {
+            System.out.println(book);
+        }
+    }
+
+    private List<Book> getAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
         for (Book book : books) {
             if (book.isAvailable()) {
-                System.out.println(book);
+                availableBooks.add(book);
             }
         }
+        return availableBooks;
     }
 
     public void borrowBook(String isbn) {
@@ -158,4 +197,3 @@ class User {
         borrowedBooks.remove(isbn);
     }
 }
-
