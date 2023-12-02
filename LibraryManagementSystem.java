@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +36,8 @@ public class LibraryManagementSystem {
             System.out.println("2. Borrow a Book");
             System.out.println("3. Return a Book");
             System.out.println("4. Add a Book");
-            System.out.println("5. Exit");
+            System.out.println("5. Delete a Book");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -61,6 +63,11 @@ public class LibraryManagementSystem {
                     addBook(library, scanner);
                     break;
                 case 5:
+                    System.out.print("Enter the ISBN of the book to delete: ");
+                    String deleteIsbn = scanner.nextLine();
+                    library.deleteBook(deleteIsbn);
+                    break;
+                case 6:
                     System.out.println("Exiting program. Thank you!");
                     System.exit(0);
                     break;
@@ -176,6 +183,19 @@ class Library {
             }
         }
         System.out.println("Invalid ISBN or book not borrowed.");
+    }
+
+    public void deleteBook(String isbn) {
+        Iterator<Book> iterator = books.iterator();
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
+            if (book.getIsbn().equals(isbn)) {
+                iterator.remove();
+                System.out.println("Book deleted successfully!");
+                return;
+            }
+        }
+        System.out.println("Book not found for deletion.");
     }
 }
 
