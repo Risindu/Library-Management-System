@@ -1,0 +1,46 @@
+# Library Management System
+
+## Overview
+The Library Management System is a console-based application written in Java that allows users to manage a library's book inventory. It provides functionalities such as adding new books, displaying available books, borrowing books, and returning books.
+
+## Features
+- Add new books to the library.
+- Display the list of available books.
+- Borrow a book (update availability status).
+- Return a book (update availability status).
+- Supports Fiction and Non-Fiction books through inheritance.
+
+## Usage
+1. **Compile the Program:**
+    ```bash
+    javac LibraryManagementSystem.java
+    ```
+
+2. **Run the Program:**
+    ```bash
+    java LibraryManagementSystem
+    ```
+
+3. **Follow on-screen instructions:**
+    - Choose options to perform actions such as displaying available books, borrowing, returning, or exiting the program.
+
+## Sample Screenshots
+*Include screenshots of the program in action, demonstrating user inputs and outputs.*
+
+## Project Structure
+- `LibraryManagementSystem.java`: Main class containing the `main` method.
+- `Book.java`: Class representing a book with title, author, ISBN, and availability.
+- `Library.java`: Class managing the collection of books and implementing library operations.
+- `User.java`: Class representing a library user with a unique identifier and borrowed books.
+- *Any additional classes for specific book types.*
+
+## Extension
+Feel free to explore and extend the functionality of the project. You can add more features, improve the user interface, or implement additional book types.
+
+## Author
+K.W.Risindu Chiranthana Madhushan
+## License
+This project is licensed under the [MIT License](LICENSE).
+
+---
+**Note:** Replace "Your Name" with your actual name and add the appropriate license file to your project.
